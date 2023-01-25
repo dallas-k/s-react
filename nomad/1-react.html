@@ -16,20 +16,18 @@
 
 <script type="text/babel">
     let counter = 0;
-    function countUp() {
-        counter++;
-        render();
-    }
-    function render() {
-        ReactDOM.createRoot(document.querySelector("#root")).render(<Container />);
-    }
-    const Container = () => (
+    function App() {
+        const [data, dataState] = React.useState(0);
+        function dataUp() {
+            dataState(abs => abs + 1);
+        }
+        return (
         <div>
-            <h3 id='title'>Total Click : {counter}</h3>
-            <button onClick={countUp}>Click Me</button>
+            <h3 id='title'>Total Click : {data}</h3>
+            <button onClick={dataUp}>Click Me</button>
         </div>
-    );
+    )};
 
-    ReactDOM.createRoot(document.querySelector("#root")).render(<Container />);
+    ReactDOM.createRoot(document.querySelector("#root")).render(<App />)
 </script>
 </html>
