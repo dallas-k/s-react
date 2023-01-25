@@ -24,6 +24,7 @@ class App extends Component {
     this.state = {
       subject : {title : 'Web', sub : 'World Wide Web'},
       mode : 'read',
+      selected_id : 0,
       contents : [
         {id:1, title:'HTML', desc:'HTML is for information'},
         {id:2, title:'CSS', desc:'CSS is for design'},
@@ -39,14 +40,24 @@ class App extends Component {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
     } else if (this.state.mode === 'read') {
-      _title = this.state.contents[0].title;
-      _desc = this.state.contents[0].desc;
+        if(this.state.selected_id===1){
+            _title = this.state.contents[0].title;
+            _desc = this.state.contents[0].desc;
+        }
+        if(this.state.selected_id===2){
+            _title = this.state.contents[1].title;
+            _desc = this.state.contents[1].desc;
+        }
+        if(this.state.selected_id===3){
+            _title = this.state.contents[2].title;
+            _desc = this.state.contents[2].desc;
+        }
     }
 
     return (
       <div className='App'>
         <Subject title={this.state.subject.title} sub={this.state.subject.sub}
-        onChangePage = {function() {alert('hello');}.bind(this)}>
+        onChangePage = {function() {this.setState({mode : 'welcome'});}.bind(this)}>
         </Subject>
         {/* <header>
           <h1><a href='/' onClick={function(e) {
@@ -56,7 +67,11 @@ class App extends Component {
             )
             }.bind(this)}>Header</a></h1>
         </header> */}
-        <TOD data={this.state.contents} />
+        <TOD data={this.state.contents} changeMode={function(id) {
+            this.setState({mode : 'read', selected_id : Number(id)});
+            console.log(this.state.selected_id);
+            console.log(this.state.mode);
+        }.bind(this)}/>
         <Content title={_title} desc={_desc} />
       </div>
     )
