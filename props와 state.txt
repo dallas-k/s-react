@@ -1,0 +1,48 @@
+<props>
+HTML의 속성(attribute)에 해당
+
+<state>
+- props : 부모 컴포넌트가 자식 컴포넌트에 값을 전달할 떄 사용 (읽기 전용)
+- state : 컴포넌트 자신이 가지고 있는 값 / 컴포넌트 내부의 동적 데이터 / 변화가 필요한 경우 setState() 함수 사용  >> 단적인 예 : 자식의 값을 부모에게 주고 싶을 때 사용
+
+- Constructor (생성자) : state(컴포넌트 상태) 값을 초기화하거나 메서드를 바인딩 할 때 사용 / 해당 컴포넌트가 마운트 되기 전 호출
+
+- 마운트 : DOM 객체가 생성되고 브라우저에 나타나는 것을 의미
+
+- 컴포넌트 라이프 사이클 :
+  - 마운드 : DOM 객체 생성, 브라우저에 출력
+  - Update : props 값 변경, state 값 변경, 부모 컴포넌트 리 렌더링
+  - UnMount : 컴포넌트가 DOM에서 제거
+
+- 메서드 바인딩 :
+  - 클래스와 메서드 간의 연관 관계
+  - 클래스와 연관된 메서드는 클래스에 바인딩 가능
+
+- super :
+  - React.Componenet를 상속한 컴포넌트의 생성자를 구현할 때 다른 구문앞에 super(props)를 호출하지 않으면 this.props가 생성자 내에서 정의되지 않아 버그 발생
+
+- JS에서의 super
+  - 부모 클래스 생성자
+  - constructor에서 super(props) 선언 전까지 this 사용 불가
+
+- render 함수 :
+  - react에서는 props나 state가 변경될 때마다 해당되는 컴포넌트의 render함수 및 하위 컴포넌트의 render 함수 호출
+
+- 렌더링 테스트
+  - App.js / Subject.js / TOC.js / Content.js 파일에 콘솔로그 작성 후 페이지 실행
+
+- react 이벤트 사용
+  - onClick = { 실행할 문장 }
+  - 이벤트 이름은 반드시 대문자 사용
+
+- 이벤트를 실행한 객체(요소, 태그)의 기본 동작을 제한하기
+  - function(e) { e.preventDefault(); }
+  - function 안에 this는 .bind(this) 값을 할당해주어야 한다.
+
+- bind 메소드
+  - bind() 메소드가 호출되면 새로운 함수를 생성
+  - 받게되는 첫 인자의 value로는 this키워드를 설정하고, 이어지는 인자들은 바인드된함수의 인수에 제공
+  - function() { }.bind(this) >> function(this) { }.bind(this)
+
+- 컴포넌트 이벤트
+  - 리액트에서는 이벤트도 만들어서 사용할 수 있다.

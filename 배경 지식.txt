@@ -1,0 +1,23 @@
+<툴 체인>
+- 리액트 프로젝트 개발시 목표에 따라 필요한 여러 가지 개발 환경 및 도구를 모아 한번에 제공하는 도구 (핵심 : Create React App)
+> npm으로 대체 가능
+
+<npm vs npx>
+- npm : 프로그램 설치 (반영구)
+- npx : 해당 프로그램을 한번만 설치 후 자동 삭제 -> 공간 낭비 장비 & 항상 새로 다운받아 최신상태 유지 가능
+
+<개발 환경 준비>
+- 디렉토리명으로 react 사용 불가
+- 프로젝트 생성 방법 : npx create-react-app [프로젝트명]  |  . (현재 디렉토리에 설치)
+
+<디렉토리 구성>
+- App.js - 개발
+- index.js - 연결
+- index.html - 실행
+
+<배포>
+npm run build 를 통해 배포 파일을 만들 수 있다. 이 때, dist 혹은 build 라는 폴더가 생성되고, 배포될 파일들이 그곳에 담기게 된다. serve dist / serve build를 통해 해당 파일을 실행해 볼 수 있다. (사전에 npm i -g serve로 설치 요망)
+
+<Dev Tool>
+- 구글 확장프로그램 : React Dev Tool  >> 개발자 도구에서 실행 결과가 아닌 개발 코드, props 등 확인
+- npm : npm install -g reat-devtools >> 
