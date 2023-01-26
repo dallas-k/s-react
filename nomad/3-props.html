@@ -12,6 +12,7 @@
 </body>
 <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
 <script type="text/babel">
@@ -23,14 +24,18 @@
             padding :'20px'}
         } onClick={props.click}>{props.text}</button>
     }
-    const MemoBtn = React.memo(Btn)
+    // const MemoBtn = React.memo(Btn)
+    Btn.propTypes = {
+        text: PropTypes.string,
+        fontSize : PropTypes.number
+    }
     function App() {
         const [value, setValue] = React.useState('Save Changes');
-        const changeValue = () => setValue('Revertaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+        const changeValue = () => setValue('Revert');
         return (
             <div>
                 <Btn text={value} click={changeValue} />
-                <MemoBtn text="Continue" />
+                <Btn text={14} fontSize={"ABC"} />
             </div>
         )
     };
