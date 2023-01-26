@@ -1,0 +1,5 @@
+함수 방식으로 state사용하기
+- hook을 사용
+- React 내장 hook, 사용자 정의 hook 가능
+- hook의 이름은 "use"로 시작
+- useState : 페이스북이 제공하고 있는 내장 hook의 이름
