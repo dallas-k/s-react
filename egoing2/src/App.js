@@ -1,50 +1,76 @@
 import React, { Component } from 'react';
-import './App.css'
+import TOC from "./components/TOC";
+import Content from "./components/Content"
+import Subject from "./components/Subject"
+import Control from "./components/Control"
+import './App.css';
 
-function App() {
-  return (
-    <div className="container">
-        <h1>Hello World</h1>
-        <FuncComp initNumber={new Date().toString()} />
-        <ClassComp initNumber={new Date().toString()} />
-    </div>
-  );
-}
-
-function FuncComp(props) {
-    const [num, setNum] = React.useState(props.initNumber);
-    const onClick = () => {
-        setNum(new Date().toString());
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            mode: 'read',
+            selected_content_id: 0,
+            subject: { title: 'WEB', sub: 'World Wide Web!' },
+            welcome: { title: 'Welcome', desc: 'Hello, React!!' },
+            contents: [
+                { id: 1, title: 'HTML', desc: 'HTML is for information' },
+                { id: 2, title: 'CSS', desc: 'CSS is for design' },
+                { id: 3, title: 'JavaScript', desc: 'JavaScript is for interactive' }
+            ]
+        }
     }
-    return (
-        <div className='container'>
-            <h2>function style component</h2>
-            <p>Number : {num}</p>
-            <button onClick={onClick}>change Num</button>
-        </div>
-    )
-}
-
-var classStyle = 'color: white; background:teal';
-class ClassComp extends Component {
-    state = {
-        number : this.props.initNumber
-    }
-    // render 전에 실행
-    UNSAFE_componentWillMount(){
-        console.log('%cclass => componentWillMount 실행', classStyle)
-    }
-    render() {// class 형식의 특징
-        console.log('%cclass => componentWillMount 실행 후 render', classStyle)
+    render() {
+        console.log('App 렌더링 완료');
+        var _title, _desc, _article = null;
+        _title = this.state.subject.title;
+        _desc = this.state.subject.sub;
+        if (this.state.mode === 'welcome') {
+            _title = this.state.welcome.title;
+            _desc = this.state.welcome.desc;
+            _article = <Content title={_title} desc={_desc} />
+        } else if (this.state.mode === 'read') {
+            var i = 0;
+            while (i < this.state.contents.length) {
+                var data = this.state.contents[i];
+                if (data.id === this.state.selected_content_id) {
+                    _title = data.title;
+                    _desc = data.desc;
+                    
+                    break;
+                }
+                i = i + 1;
+            }
+            _article = <Content title={_title} desc={_desc} />
+        }
+        console.log("render", this);
         return (
-            <div className='container'>
-                <h2>class style component</h2>
-                <p>Number : {this.state.number}</p>
-                <input type='button' value='random' onClick={ function() {
-                    this.setState( {number : new Date().toString() });
-                }.bind(this)}></input>
+            <div className="App">
+                <Subject
+                    title={this.state.subject.title}
+                    sub={this.state.subject.sub}
+                    onChangePage={function () {
+                        this.setState({ mode: 'welcome' });
+                    }.bind(this)}
+                ></Subject>
+                <TOC
+                    onChangePage={function (id) {
+                        this.setState({
+                            mode: 'read',
+                            selected_content_id: Number(id)
+                        });
+                    }.bind(this)}
+                    data={this.state.contents}></TOC>
+                <Control changeMode={
+                    (e) => {
+                        this.setState({
+                            mode: e
+                        })
+                    }
+                } />
+                {_article}
             </div>
-        )
+        );
     }
 }
 

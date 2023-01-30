@@ -1,0 +1,14 @@
+BrowserRouter : UI의 최상위에 작성
+Router : Route set
+Route : 링크 설정
+
+path : 브라우저에 출력될 주소 (index 제외하고 '/~~' 으로 사용하면 에러나옴)
+path='/' => index
+path='/*' => 없는 주소
+path = 'topics/*' => 중첩 라우팅
+element : 화면에 출력될 컴포넌트
+
+link -> paging X
+navlink -> paging X + class='active' 부여
+
+useParams 
